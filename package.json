@@ -3,17 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "DEBUG=nodepop:* nodemon ./bin/www",
     "jscs": "jscs .",
     "jshint": "jshint ."
   },
   "dependencies": {
+    "bcrypt": "^0.8.7",
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "ejs": "~2.4.1",
     "express": "~4.13.4",
     "mongodb": "^2.2.10",
+    "mongoose": "^4.6.4",
+    "mongoose-unique-validator": "^1.0.2",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"
   },
