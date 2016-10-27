@@ -12,6 +12,7 @@ require('./lib/mongodbConnection');
 const isApiRequest = require('./lib/checkApiRequest');
 
 require('./models/User');
+require('./models/Tag');
 
 var routes = require('./routes/index');
 var users = require('./routes/api/v1/users');
