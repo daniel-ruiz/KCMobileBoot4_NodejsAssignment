@@ -18,6 +18,7 @@ const routes = require('./routes/index');
 const users = require('./routes/api/v1/users');
 const authentication = require('./routes/api/v1/authentication');
 const tags = require('./routes/api/v1/tags');
+const ads = require('./routes/api/v1/ads');
 
 var app = express();
 
@@ -52,6 +53,7 @@ app.use('/', routes);
 app.use('/api/v1/users', users);
 app.use('/api/v1/login', authentication);
 app.use('/api/v1/tags', tags);
+app.use('/api/v1/ads', ads);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
