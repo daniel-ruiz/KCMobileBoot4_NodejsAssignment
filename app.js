@@ -14,9 +14,10 @@ const isApiRequest = require('./lib/checkApiRequest');
 require('./models/User');
 require('./models/Ad');
 
-var routes = require('./routes/index');
-var users = require('./routes/api/v1/users');
-var authentication = require('./routes/api/v1/authentication');
+const routes = require('./routes/index');
+const users = require('./routes/api/v1/users');
+const authentication = require('./routes/api/v1/authentication');
+const tags = require('./routes/api/v1/tags');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use(jwt({ secret: 'ghFwBnLYeYn8pvJH' })
 app.use('/', routes);
 app.use('/api/v1/users', users);
 app.use('/api/v1/login', authentication);
+app.use('/api/v1/tags', tags);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
