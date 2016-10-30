@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const times = require('lodash.times');
+const mongoose = require('mongoose');
+
+require('../models/Ad');
+require('../models/User');
+
+const Ad = mongoose.model('Ad');
+const User = mongoose.model('User');
+
+const AdSample = require('../lib/AdSample');
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/nodepop');
+
+Ad.remove({});
+User.remove({});
+
+times(100, function() {
+  new AdSample().create(console.log.bind(console));
+});
+
+mongoose.connection.close();

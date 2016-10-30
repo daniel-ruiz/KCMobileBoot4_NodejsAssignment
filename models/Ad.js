@@ -53,6 +53,10 @@ adSchema.statics.availableTags = function() {
   return PERMITTED_TAGS;
 };
 
+adSchema.statics.permittedTypes = function() {
+  return PERMITTED_AD_TYPES;
+};
+
 adSchema.statics.isPermittedType = function(type) {
   return PERMITTED_AD_TYPES.indexOf(type) !== -1;
 };

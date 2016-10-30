@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "DEBUG=nodepop:* nodemon ./bin/www",
+    "seeds": "./scripts/seeds",
     "jscs": "jscs .",
     "jshint": "jshint ."
   },
@@ -15,7 +16,12 @@
     "ejs": "~2.4.1",
     "express": "~4.13.4",
     "express-jwt": "^5.1.0",
+    "faker": "^3.1.0",
     "jsonwebtoken": "^7.1.9",
+    "lodash.random": "^3.2.0",
+    "lodash.sample": "^4.2.1",
+    "lodash.samplesize": "^4.2.0",
+    "lodash.times": "^4.3.2",
     "lodash.uniq": "^4.5.0",
     "mongodb": "^2.2.10",
     "mongoose": "^4.6.4",
