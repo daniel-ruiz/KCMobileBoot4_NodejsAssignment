@@ -16,8 +16,8 @@ const AdSample = require('../lib/AdSample');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/nodepop');
 
-Ad.remove({});
-User.remove({});
+Ad.remove().exec();
+User.remove().exec();
 
 times(100, function() {
   new AdSample().create(console.log.bind(console));
