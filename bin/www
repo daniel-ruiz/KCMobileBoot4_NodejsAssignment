@@ -6,37 +6,49 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('nodepop:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('nodepop:server');
+const http = require('http');
+const cluster = require('cluster');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+let server;
 
-var server = http.createServer(app);
+if (cluster.isMaster) {
+  const numCPUs = require('os').cpus().length;
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+} else {
+  /**
+   * Create HTTP server.
+   */
+
+  server = http.createServer(app);
+
+  /**
+   * Listen on provided port, on all network interfaces.
+   */
+
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+}
 
 /**
  * Normalize a port into a number, string, or false.
  */
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -60,7 +72,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port !== 'string' ? 'Port ' + port : 'Pipe ' + port;
+  const bind = typeof port !== 'string' ? 'Port ' + port : 'Pipe ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -82,7 +94,7 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr !== 'string' ? 'port ' + addr.port : 'pipe ' + addr;
+  const addr = server.address();
+  const bind = typeof addr !== 'string' ? 'port ' + addr.port : 'pipe ' + addr;
   debug('Listening on ' + bind);
 }
