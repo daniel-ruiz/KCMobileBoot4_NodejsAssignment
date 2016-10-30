@@ -14,7 +14,7 @@ function AdFilter(request) {
     return this.request.query[name] || this.request.body[name];
   };
 
-  this.toJson = function() {
+  this.query = function() {
     const name = this.extractFromRequest('name');
     const type = this.extractFromRequest('type');
     const minPrice = parseInt(this.extractFromRequest('minPrice'));
@@ -42,6 +42,39 @@ function AdFilter(request) {
     }
 
     return adFilter;
+  };
+
+  this.options = function() {
+    const page = parseInt(this.extractFromRequest('page'));
+    const perPage = parseInt(this.extractFromRequest('perPage'));
+    const sort = this.extractFromRequest('sort');
+
+    let options = {
+      select: {
+        _id: 0,
+        name: 1,
+        type: 1,
+        price: 1,
+        photo: 1,
+        tags: 1
+      }
+    };
+
+    if (!isNaN(page) && !isNaN(perPage)) {
+      options.page = page;
+      options.limit = perPage;
+    }
+
+    if (sort) {
+      options.sort = {};
+      if (sort.startsWith('-')) {
+        options.sort[sort.slice(1)] = -1;
+      } else {
+        options.sort[sort] = 1;
+      }
+    }
+
+    return options;
   };
 
   return this;

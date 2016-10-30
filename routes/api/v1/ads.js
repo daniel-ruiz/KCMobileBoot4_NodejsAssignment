@@ -8,20 +8,17 @@ const Ad = mongoose.model('Ad');
 const AdFilter = require('../../../helpers/AdFilter');
 
 router.get('/', function(req, res, next) {
-  const adFilter = new AdFilter(req).toJson();
+  const adFilter = new AdFilter(req);
 
-  Ad.find(adFilter).select({
-    _id: 0,
-    name: 1,
-    type: 1,
-    price: 1,
-    photo: 1,
-    tags: 1
-  })
+  Ad.paginate(adFilter.query(), adFilter.options())
   .then(function(ads) {
     res.status(200).json({
       success: true,
-      ads: ads
+      ads: ads.docs,
+      total: ads.total,
+      perPage: ads.limit,
+      page: ads.page,
+      pages: ads.pages
     });
   })
   .catch(next);

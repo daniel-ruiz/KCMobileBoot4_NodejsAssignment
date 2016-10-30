@@ -2,6 +2,7 @@
 
 const uniq = require('lodash.uniq');
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 
 const PERMITTED_AD_TYPES = ['BUY', 'SELL'];
@@ -40,6 +41,8 @@ let adSchema = new Schema({
     validate: [tagValueValidator, 'The Ad contains at least one invalid tag']
   }
 });
+
+adSchema.plugin(mongoosePaginate);
 
 adSchema.pre('save', function(next) {
   let ad = this;
