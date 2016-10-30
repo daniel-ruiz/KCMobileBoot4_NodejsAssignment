@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 const jwt = require('jsonwebtoken');
+const throwjs = require('throw.js');
 
 router.post('/', function(req, res) {
   const email = req.body.email;
@@ -18,9 +19,12 @@ router.post('/', function(req, res) {
         if (err) {
           console.log(err);
         }
+        const message = 'Invalid email and password';
+        const errorResponse = new throwjs.badRequest(message);
         return res.status(400).json({
-          success: false,
-          message: 'Invalid email and password'
+          status: errorResponse.statusCode,
+          name: errorResponse.name,
+          message: errorResponse.message
         });
       }
       user.comparePassword(password, function(err, isMatch) {
@@ -28,9 +32,12 @@ router.post('/', function(req, res) {
           if (err) {
             console.log(err);
           }
+          const message = 'Invalid email and password';
+          const errorResponse = new throwjs.badRequest(message);
           return res.status(400).json({
-            success: false,
-            message: 'Invalid email and password'
+            status: errorResponse.statusCode,
+            name: errorResponse.name,
+            message: errorResponse.message
           });
         }
 
@@ -39,8 +46,9 @@ router.post('/', function(req, res) {
           email: user.email
         }, 'ghFwBnLYeYn8pvJH');
 
-        res.json({
-          success: true,
+        res.status(201).json({
+          status: 201,
+          name: 'Created',
           message: 'Logged in successfully',
           token: jwtToken
         });
@@ -48,12 +56,20 @@ router.post('/', function(req, res) {
 
     });
   } else {
-    res.status(400).json({
-      success: false,
-      message: 'Email and password fields required'
+    const message = 'Email and password fields required';
+    const err = new throwjs.unprocessableEntity(message);
+    res.status(422).json({
+      status: err.statusCode,
+      name: err.name,
+      message: err.message
     });
   }
 
+});
+
+router.all('/', function(req, res, next) {
+  const message = `The ${req.method} method is not allowed for this resource`;
+  next(new throwjs.methodNotAllowed(message));
 });
 
 module.exports = router;

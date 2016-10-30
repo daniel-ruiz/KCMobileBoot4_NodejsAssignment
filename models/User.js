@@ -10,21 +10,23 @@ const Schema = mongoose.Schema;
 let userSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: [true, 'The user must have a name']
   },
   email: {
     type: String,
-    required: true,
+    required: [true, 'The user must have an email'],
     unique: true
   },
   password: {
     type: String,
-    required: true,
-    minlength: 8
+    required: [true, 'The user must have a password'],
+    minlength: [8, 'The user\'s password must be at least 8 characters long']
   }
 });
 
-userSchema.plugin(uniqueValidator);
+userSchema.plugin(uniqueValidator, {
+  message: 'The user\'s email must be unique'
+});
 
 userSchema.pre('save', function(next) {
   let user = this;

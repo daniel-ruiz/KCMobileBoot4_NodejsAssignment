@@ -21,24 +21,24 @@ function tagValueValidator(tags) {
 let adSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: [true, 'The ad must have a name']
   },
   type: {
     type: String,
-    enum: PERMITTED_AD_TYPES
+    enum: [PERMITTED_AD_TYPES, 'Invalid ad type']
   },
   price: {
     type: Number,
-    required: true
+    required: [true, 'The ad must have a price']
   },
   photo: {
     type: String,
-    required: true
+    required: [true, 'The ad must have a photo']
   },
   tags: {
     type: [String],
-    required: true,
-    validate: [tagValueValidator, 'The Ad contains at least one invalid tag']
+    required: [true, 'The ad must have at least one valid tag'],
+    validate: [tagValueValidator, 'The ad contains at least one invalid tag']
   }
 });
 
