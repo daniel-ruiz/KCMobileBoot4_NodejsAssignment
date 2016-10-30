@@ -53,4 +53,8 @@ adSchema.statics.availableTags = function() {
   return PERMITTED_TAGS;
 };
 
+adSchema.statics.isPermittedType = function(type) {
+  return PERMITTED_AD_TYPES.indexOf(type) !== -1;
+};
+
 mongoose.model('Ad', adSchema);

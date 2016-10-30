@@ -5,11 +5,12 @@ const router = express.Router();
 
 const mongoose = require('mongoose');
 const Ad = mongoose.model('Ad');
-
-const Promise = mongoose.Promise;
+const AdFilter = require('../../../helpers/AdFilter');
 
 router.get('/', function(req, res, next) {
-  Ad.find({}).select({
+  const adFilter = new AdFilter(req).toJson();
+
+  Ad.find(adFilter).select({
     _id: 0,
     name: 1,
     type: 1,
