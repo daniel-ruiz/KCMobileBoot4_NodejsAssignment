@@ -68,12 +68,12 @@ Lista los anuncios almacenados en la aplicación.
 
 * Esta llamada requiere autenticación previa.
 * Los siguientes parámetros opcionales permitidos se pueden incluir tanto en el cuerpo de la petición como en el *query string*:
-    1. **name**: Cadena de texto que filtra los anuncios cuyo nombre empiece por el valor proporcionado.
-    2. **type**: Filtra por anuncios de tipo *BUY* o tipo *SELL*. Si su valor no es adecuado, este parámetro se ignorará.
-    3. **minPrice** y **maxPrice**: Parámetros que especifican el rango de precio de los anuncios mostrados. Se puede establecer el mismo valor para ambos parámetros y así buscar anuncios con un precio determinado. Si se pusiera un valor en **minPrice** más elevado que el de **maxPrice**, no se mostraría ningún anuncio.
-    4. **tags**: Lista de etiquetas por las que filtrar. Se mostrarán los anuncios que tengan al menos una etiqueta en común con las especificadas en este parámetro.
-    5. **page** y **perPage**: Parámetros que controlan el número de resultados mostrados. **page** indica el número de página que el servidor debe devolver, mientras que **perPage** indica el número de elementos que contiene cada página.
-    6. **sort**: Los anuncios mostrados se pueden ordenar respecto al valor del campo proporcionado en este parámetro. Por defecto, se ordenan los resultados de forma ascendente a menos que el valor de este parámetro empiece por el caracter '-'.
+    * **name**: Cadena de texto que filtra los anuncios cuyo nombre empiece por el valor proporcionado.
+    * **type**: Filtra por anuncios de tipo *BUY* o tipo *SELL*. Si su valor no es adecuado, este parámetro se ignorará.
+    * **minPrice** y **maxPrice**: Parámetros que especifican el rango de precio de los anuncios mostrados. Se puede establecer el mismo valor para ambos parámetros y así buscar anuncios con un precio determinado. Si se pusiera un valor en **minPrice** más elevado que el de **maxPrice**, no se mostraría ningún anuncio.
+    * **tags**: Lista de etiquetas por las que filtrar. Se mostrarán los anuncios que tengan al menos una etiqueta en común con las especificadas en este parámetro.
+    * **page** y **perPage**: Parámetros que controlan el número de resultados mostrados. **page** indica el número de página que el servidor debe devolver, mientras que **perPage** indica el número de elementos que contiene cada página.
+    * **sort**: Los anuncios mostrados se pueden ordenar respecto al valor del campo proporcionado en este parámetro. Por defecto, se ordenan los resultados de forma ascendente a menos que el valor de este parámetro empiece por el caracter '-'.
     
 * Si todo ha ido bien, la respuesta a esta petición tendrá los siguientes parámetros:
     * **status**: 200
