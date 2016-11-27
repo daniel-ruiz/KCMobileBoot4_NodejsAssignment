@@ -8,7 +8,7 @@ De esta forma, **Nodepop** pretende convertirse en la mayor comunidad de compra-
 
 ##Despliegue
 
-Como parte de la práctica del módulo de *devops* del [Startup Engineering Master de KeepCoding](https://keepcoding.io/es/keepcodingstartupengineeringmasterbootcamp/), este proyecto está desplegado en la URL del siguiente [link](http://nodepop.danruicar.com/).
+Como parte de la práctica del módulo de *devops* del [Startup Engineering Master de KeepCoding](https://keepcoding.io/es/keepcodingstartupengineeringmasterbootcamp/), este proyecto está desplegado en la URL del siguiente [link](nodepop.danruicar.com/). La aplicación sirve un archivo estático a través de esta [URL](nodepop.danruicar.com/stylesheets/style.css).
 
 ##Instalación del Proyecto
 
