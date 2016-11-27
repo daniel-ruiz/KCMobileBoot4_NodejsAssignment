@@ -26,7 +26,10 @@ let adSchema = new Schema({
   },
   type: {
     type: String,
-    enum: [PERMITTED_AD_TYPES, 'Invalid ad type'],
+    enum: {
+      values: PERMITTED_AD_TYPES,
+      message: 'Invalid ad type',
+    },
     index: true
   },
   price: {
