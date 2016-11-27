@@ -6,6 +6,10 @@ Esta aplicación consiste en un API que permite que sus usarios publiquen anunci
 
 De esta forma, **Nodepop** pretende convertirse en la mayor comunidad de compra-venta de bienes de segunda mano entre usuarios.
 
+##Despliegue
+
+Como parte de la práctica del módulo de *devops* del [Startup Engineering Master de KeepCoding](https://keepcoding.io/es/keepcodingstartupengineeringmasterbootcamp/), este proyecto está desplegado en la URL del siguiente [link](http://nodepop.danruicar.com/).
+
 ##Instalación del Proyecto
 
 ###Requisitos Previos
